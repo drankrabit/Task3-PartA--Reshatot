@@ -51,8 +51,7 @@ int main(int argc, char *argv[]) {
     }
 
     // Set SO_REUSEADDR option (overides the Port in the case that it is already in use)
-    int opt = 1;
-    if (setsockopt(listenfd, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt)) == -1) {
+    if (setsockopt(listenfd, SOL_SOCKET, SO_REUSEADDR, &algorithm, strlen(algorithm)) == -1) {
         perror("Set SO_REUSEADDR failed");
         exit(EXIT_FAILURE);
     }

@@ -63,6 +63,12 @@ int main(int argc, char *argv[]) {
     // Initialize congestion window
     int cwnd = MAXLINE;
 
+    if (setsockopt(sockfd, SOL_SOCKET, SO_REUSEADDR, &algorithm, strlen(algorithm)) < 0) {
+            perror("Error setting congestion control algorithm");
+            close(sockfd);
+            exit(EXIT_FAILURE);
+        }
+
     while (1) {
         // Generate random data
         char *data = util_generate_random_data(cwnd);
